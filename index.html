@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Agropet - O Shopping do seu Pet e do Campo</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #15653c; /* Verde Floresta */
+            --secondary: #f97316; /* Laranja Vibrante (Ação) */
+            --secondary-hover: #ea580c;
+            --accent: #fef3c7; /* Amarelo suave */
+            --text-dark: #111827;
+            --text-light: #4b5563;
+            --white: #ffffff;
+            --radius-lg: 16px;
+            --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        /* Barra de Topo de Urgência / Confiança */
+        .top-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 5%;
+            letter-spacing: 0.5px;
+        }
+
+        /* Header Fixado Inteligente */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 33px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+            border-bottom: 1px solid #e5e7eb;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Botão de Alta Conversão com Efeito de Pulso */
+        .btn-whatsapp {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+            animation: pulse-subtle 2s infinite;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6);
+        }
+
+        @keyframes pulse-subtle {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent) 0%, #fff7ed 100%);
+            padding: 90px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            min-height: 75vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 620px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: #ffedd5;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.15;
+            font-weight: 800;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 35px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Barra de Benefícios */
+        .benefits-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 25px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .benefit-item i {
+            font-size: 1.5rem;
+            color: #fdba74;
+        }
+
+        /* Seções Gerais */
+        .catalog, .grooming {
+            padding: 100px 5%;
+            background-color: #f9fafb;
+            text-align: center;
+        }
+
+        .grooming {
+            background-color: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grades (Produtos e Serviços) */
+        .product-grid, .grooming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        /* Cards */
+        .product-card, .grooming-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .grooming-card {
+            background: #fafaf9;
+            border: 2px solid #e7e5e4;
+        }
+
+        .product-card:hover, .grooming-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+            border-color: var(--secondary);
+        }
+
+        .product-image {
+            height: 220px;
+            width: 100%;
+            object-fit: contain;
+            background-color: var(--white);
+            padding: 20px;
+            border-bottom: 1px solid #f3f4f6;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .grooming-header-card {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .grooming-header-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fdba74;
+        }
+
+        .product-info, .grooming-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--primary);
+            background-color: #e6f4ea;
+            padding: 4px 10px;
+            border-radius: 6px;
+            width: fit-content;
+            margin-bottom: 12px;
+        }
+
+        .product-title, .grooming-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .grooming-features {
+            list-style: none;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .grooming-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grooming-features li i {
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        .product-price, .grooming-price {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Botões de Ação Direta */
+        .btn-buy, .btn-schedule {
+            background-color: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: auto;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-buy:hover, .btn-schedule:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.5);
+        }
+
+        .btn-schedule {
+            background-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(21, 101, 60, 0.3);
+        }
+
+        .btn-schedule:hover {
+            background-color: #0f4c2c;
+        }
+
+        /* Sobre */
+        .about {
+            background-color: #f9fafb;
+            padding: 100px 5%;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .about-text {
+            flex: 1.2;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 5%;
+        }
+
+        footer p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            header { top: 0; padding: 12px 5%; }
+            body { padding-top: 70px; }
+            nav ul { display: none; }
+            .hero { flex-direction: column-reverse; text-align: center; padding: 60px 5%; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .about { flex-direction: column; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Topo -->
+    <div class="top-bar">
+        <i class="fa-solid fa-truck-fast"></i> Atendimento ágil, entrega facilitada e agendamento online de Banho & Tosa! 🐾
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-paw"></i> Super Agropet
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#banho-tosa">Banho & Tosa</a></li>
+                <li><a href="#sobre">Nossa Essência</a></li>
+            </ul>
+        </nav>
+        <a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20o%20atendimento." target="_blank" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-shield-dog"></i> Cuidado Completo</span>
+            <h1>Tudo para o seu Pet e o Campo, com <span>agendamento prático</span> de Banho & Tosa.</h1>
+            <p>Garanta o melhor cuidado para o seu melhor amigo. Compre rações e farmácia ou agende o horário do banho direto pelo site em segundos.</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="#catalogo" class="btn-whatsapp" style="display: inline-flex;">
+                    <i class="fa-solid fa-bag-shopping"></i> Ver Catálogo
+                </a>
+                <a href="#banho-tosa" class="btn-whatsapp" style="display: inline-flex; background-color: var(--primary);">
+                    <i class="fa-solid fa-scissors"></i> Agendar Banho
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&w=800&q=80" alt="Super Agropet">
+        </div>
+    </section>
+
+    <!-- Barra de Benefícios -->
+    <div class="benefits-bar">
+        <div class="benefit-item"><i class="fa-solid fa-circle-check"></i> Produtos Originais e de Confiança</div>
+        <div class="benefit-item"><i class="fa-solid fa-scissors"></i> Banho & Tosa Profissional</div>
+        <div class="benefit-item"><i class="fa-solid fa-headset"></i> Agendamento Rápido via WhatsApp</div>
+    </div>
+
+    <!-- Seção de Catálogo de Produtos -->
+    <section class="catalog" id="catalogo">
+        <h2 class="section-title">Nosso Catálogo em Destaque</h2>
+        <p class="section-subtitle">Escolha o seu produto e encomende diretamente com a nossa equipe.</p>
+        
+        <div class="product-grid">
+            <!-- NexGard -->
+            <div class="product-card">
+                <img src="nexgard.jpg" alt="NexGard" class="product-image">
+                <div class="product-info">
+                    <span class="product-tag">Antipulgas</span>
+                    <h3 class="product-title">NexGard Antipulgas e Carrapatos (Todos os Pesos)</h3>
+                    <div class="product-price">Consultar Peso</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20saber%20o%20preço%20do%20NexGard%20para%20o%20peso%20do%20meu%20pet." target="_blank" class="btn-buy">
+                        <i class="fa-brands fa-whatsapp"></i> Consultar / Encomendar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Frontline -->
+            <div class="product-card">
+                <img src="frontline.jpg" alt="Frontline" class="product-image">
+                <div class="product-info">
+                    <span class="product-tag">Antipulgas</span>
+                    <h3 class="product-title">Frontline Plus / Spot-On</h3>
+                    <div class="product-price">A partir de R$ 69,90</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Frontline." target="_blank" class="btn-buy">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ração BioNatural -->
+            <div class="product-card">
+                <img src="bionatural.jpg" alt="Ração BioNatural" class="product-image">
+                <div class="product-info">
+                    <span class="product-tag">Nutrição</span>
+                    <h3 class="product-title">Ração Premium BioNatural</h3>
+                    <div class="product-price">R$ 115,00</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20comprar%20a%20Ração%20BioNatural." target="_blank" class="btn-buy">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Whiskas Salmão -->
+            <div class="product-card">
+                <img src="whiskas-salmao.jpg" alt="Whiskas Salmão" class="product-image">
+                <div class="product-info">
+                    <span class="product-tag">Gatos</span>
+                    <h3 class="product-title">Ração Whiskas Sabor Salmão</h3>
+                    <div class="product-price">R$ 38,90</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20comprar%20a%20Whiskas%20Salmão." target="_blank" class="btn-buy">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Whiskas Castrados -->
+            <div class="product-card">
+                <img src="whiskas-castrados.jpg" alt="Whiskas Castrados" class="product-image">
+                <div class="product-info">
+                    <span class="product-tag">Gatos Castrados</span>
+                    <h3 class="product-title">Ração Whiskas para Gatos Castrados</h3>
+                    <div class="product-price">R$ 39,90</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20comprar%20a%20Whiskas%20para%20Gatos%20Castrados." target="_blank" class="btn-buy">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Whiskas Filhotes -->
+            <div class="product-card">
+                <img src="whiskas-filhotes.jpg" alt="Whiskas Filhotes" class="product-image">
+                <div class="product-info">
+                    <span class="product-tag">Gatos Filhotes</span>
+                    <h3 class="product-title">Ração Whiskas para Gatos Filhotes</h3>
+                    <div class="product-price">R$ 41,90</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20comprar%20a%20Whiskas%20para%20Gatos%20Filhotes." target="_blank" class="btn-buy">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Agendamento de Banho & Tosa -->
+    <section class="grooming" id="banho-tosa">
+        <h2 class="section-title">Agendamento de Banho & Tosa</h2>
+        <p class="section-subtitle">Escolha o serviço ideal para o seu pet e garanta o horário na nossa agenda com facilidade.</p>
+
+        <div class="grooming-grid">
+            <!-- Serviço 1: Porte Pequeno -->
+            <div class="grooming-card">
+                <div class="grooming-header-card">
+                    <i class="fa-solid fa-dog"></i>
+                    <h3>Porte Pequeno</h3>
+                </div>
+                <div class="grooming-info">
+                    <span class="product-tag" style="background-color: #fef3c7; color: #b45309;">Banho & Higiene</span>
+                    <h4 class="grooming-title">Pacote Banho Essencial</h4>
+                    <ul class="grooming-features">
+                        <li><i class="fa-solid fa-check"></i> Banho com shampoo especial</li>
+                        <li><i class="fa-solid fa-check"></i> Corte de unhas e limpeza de ouvidos</li>
+                        <li><i class="fa-solid fa-check"></i> Secagem e escovação</li>
+                        <li><i class="fa-solid fa-check"></i> Perfume duradouro e gravatinha</li>
+                    </ul>
+                    <div class="grooming-price">R$ 55,00</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20o%20Banho%20para%20Pet%20de%20Porte%20Pequeno." target="_blank" class="btn-schedule">
+                        <i class="fa-brands fa-whatsapp"></i> Agendar Horário
+                    </a>
+                </div>
+            </div>
+
+            <!-- Serviço 2: Porte Médio / Grande -->
+            <div class="grooming-card">
+                <div class="grooming-header-card">
+                    <i class="fa-solid fa-paw"></i>
+                    <h3>Porte Médio e Grande</h3>
+                </div>
+                <div class="grooming-info">
+                    <span class="product-tag" style="background-color: #fef3c7; color: #b45309;">Cuidado Completo</span>
+                    <h4 class="grooming-title">Banho e Tosa Completa</h4>
+                    <ul class="grooming-features">
+                        <li><i class="fa-solid fa-check"></i> Banho completo adaptado à pelagem</li>
+                        <li><i class="fa-solid fa-check"></i> Tosa higiênica ou de raça</li>
+                        <li><i class="fa-solid fa-check"></i> Limpeza de ouvidos e corte de unhas</li>
+                        <li><i class="fa-solid fa-check"></i> Hidratação e escovação profunda</li>
+                    </ul>
+                    <div class="grooming-price">A partir de R$ 85,00</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20Banho%20e%20Tosa%20para%20Pet%20de%20Porte%20Médio/Grande." target="_blank" class="btn-schedule">
+                        <i class="fa-brands fa-whatsapp"></i> Agendar Horário
+                    </a>
+                </div>
+            </div>
+
+            <!-- Serviço 3: Hidratação e Spa -->
+            <div class="grooming-card">
+                <div class="grooming-header-card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Spa & Tratamentos</h3>
+                </div>
+                <div class="grooming-info">
+                    <span class="product-tag" style="background-color: #fef3c7; color: #b45309;">Tratamento VIP</span>
+                    <h4 class="grooming-title">Hidratação Profunda + Banho</h4>
+                    <ul class="grooming-features">
+                        <li><i class="fa-solid fa-check"></i> Banho relaxante com água morna</li>
+                        <li><i class="fa-solid fa-check"></i> Máscara de hidratação e reconstrução dos pelos</li>
+                        <li><i class="fa-solid fa-check"></i> Desembaraço cuidadoso</li>
+                        <li><i class="fa-solid fa-check"></i> Acabamento impecável</li>
+                    </ul>
+                    <div class="grooming-price">R$ 95,00</div>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20o%20Spa%20(Hidratação)%20para%20o%20meu%20pet." target="_blank" class="btn-schedule">
+                        <i class="fa-brands fa-whatsapp"></i> Agendar Horário
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="about" id="sobre">
+        <div class="about-text">
+            <h2>Compromisso com o bem-estar animal e do campo</h2>
+            <p>No <strong>Super Agropet</strong>, acreditamos que cada cliente merece um atendimento dedicado, honesto e ágil. Selecionamos cada marca e produto pensando na saúde de quem você mais ama.</p>
+            <p>Não encontrou o que procurava ou tem dúvidas sobre a agenda de banho? Fale com a gente agora mesmo!</p>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1568605117036-5e5e76808113?auto=format&fit=crop&w=800&q=80" alt="Loja Super Agropet">
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 Super Agropet. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Feito com foco em conversão e carinho para a Super Agropet.</p>
+    </footer>
+
+</body>
+</html>
